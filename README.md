@@ -60,3 +60,24 @@ themes/               主题资产（用户复制到 ~/.dsh-tui/themes/）
   [插件开发指南](https://github.com/ccch1mneyyy/dsh-TUI/blob/main/docs/plugins.md)
   (Full seam catalogue, red lines, and listing: the core repo's
   [Plugin development guide](https://github.com/ccch1mneyyy/dsh-TUI/blob/main/docs/plugins.en.md))
+
+## 生态规范与验证（dsh-ecosystem-spec v0.15）
+
+本模板随 [dsh-ecosystem-spec](https://github.com/T-Auto/dsh-ecosystem-spec)
+（社区 v0.15 准入 profile）附上声明性身份文件 `dsh-plugin.json`：用 `facets.host`
+（entry `lib/types/index.js` + `apiVersion v1alpha1`）、`requires.contracts`
+（`messages.dsh/v1alpha1#MessageObserver`）、`permissions`
+（`messages.observe.read`，默认 deny）与 `subscriptions` 描述插件的 v0.15 身份
+与契约面；实际可运行层仍是 `package.json` 的 `dsh.bundle.patch` +
+`cordis.patch.yml`（见 `overrides`）。
+
+验证（需要一个 [dsh-ecosystem-spec](https://github.com/T-Auto/dsh-ecosystem-spec)
+检出，可用 `DASH_ECOSYSTEM_SPEC` 指向；检出内先 `npm run test:standalone`）：
+
+```sh
+npm run verify:plugin
+```
+
+预期决策为 `waiting_authorization`（`messages.observe.read` 默认 deny，符合
+RFC 0005 默认拒绝语义）；授权后（`~/.dsh-tui/extension-grants.json`）为
+`compatible`。

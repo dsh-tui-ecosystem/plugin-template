@@ -26,7 +26,8 @@
     "node": "^22.19 || >=24"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "verify:plugin": "node scripts/verify-plugin.mjs"
   },
   "license": "MIT",
   "dsh": {

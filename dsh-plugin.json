@@ -1,0 +1,46 @@
+{
+  "$schema": "https://dsh.community/schemas/dsh-plugin-0.15.json",
+  "id": "com.dsh-tui-ecosystem.example-plugin",
+  "name": "dsh-tui example plugin",
+  "version": "0.1.0",
+  "manifestVersion": "0.15",
+  "facets": {
+    "host": {
+      "entry": "lib/types/index.js",
+      "apiVersion": "v1alpha1"
+    }
+  },
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "messages.dsh/v1alpha1",
+        "kind": "MessageObserver"
+      }
+    ]
+  },
+  "permissions": [
+    {
+      "name": "messages.observe.read",
+      "scope": "com.dsh-tui-ecosystem.example-plugin",
+      "reason": "订阅会话事件以统计每会话 turn 数（默认 deny，授权后才能观察）"
+    }
+  ],
+  "contributes": {
+    "commands": []
+  },
+  "subscriptions": [
+    "messages.observe"
+  ],
+  "license": "MIT",
+  "source": {
+    "repository": "https://github.com/dsh-tui-ecosystem/plugin-template",
+    "revision": "main"
+  },
+  "overrides": [
+    {
+      "target": "cordis.patch.yml",
+      "kind": "patch",
+      "description": "实际可运行层仍是 Cordis bundle（见 package.json 的 dsh.bundle.patch）；本 manifest 是 v0.15 身份 / 契约声明层，两者暂未统一。"
+    }
+  ]
+}
