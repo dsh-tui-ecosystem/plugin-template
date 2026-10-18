@@ -1,0 +1,22 @@
+{
+  "$schema": "https://dsh.community/schemas/dsh-plugin-0.15.json",
+  "id": "dsh-tui-ecosystem.example-plugin",
+  "name": "dsh-TUI example plugin",
+  "version": "0.1.0",
+  "manifestVersion": "0.15",
+  "facets": {
+    "host": {
+      "entry": "lib/types/index.js",
+      "apiVersion": "v1alpha1"
+    }
+  },
+  "requires": {
+    "contracts": []
+  },
+  "permissions": [],
+  "contributes": {
+    "commands": []
+  },
+  "subscriptions": [],
+  "license": "MIT"
+}
