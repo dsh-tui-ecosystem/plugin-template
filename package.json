@@ -2,6 +2,10 @@
   "name": "@dsh-tui-ecosystem/example-plugin",
   "version": "0.1.0",
   "description": "Example dsh-TUI ecosystem plugin: per-session turn counters via log-only session events, plus an optional TUI prompt slot.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsh-tui-ecosystem/plugin-template.git"
+  },
   "type": "module",
   "main": "lib/types/index.js",
   "types": "lib/types/index.d.ts",
@@ -20,13 +24,18 @@
   "files": [
     "lib",
     "skills",
-    "cordis.patch.yml"
+    "cordis.patch.yml",
+    "dsh-plugin.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": "^22.19 || >=24"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "check:manifest": "node scripts/check-manifest.mjs"
   },
   "license": "MIT",
   "dsh": {
