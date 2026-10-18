@@ -69,6 +69,25 @@ check('id is a namespaced identifier', isText(manifest.id) && NAMESPACED_ID.test
 check('name is non-empty', isText(manifest.name))
 check('version is semver', isText(manifest.version) && SEMVER.test(manifest.version), String(manifest.version))
 
+if (file === join(root, 'dsh-plugin.json')) {
+  let pkg
+  try {
+    pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
+  } catch {
+    pkg = undefined
+  }
+  check(
+    'manifest version matches package.json',
+    isObject(pkg) && manifest.version === pkg.version,
+    isObject(pkg) ? `${String(manifest.version)} != ${String(pkg.version)}` : 'package.json unreadable',
+  )
+  check(
+    'package.json ships dsh-plugin.json',
+    isObject(pkg) && Array.isArray(pkg.files) && pkg.files.includes('dsh-plugin.json'),
+    isObject(pkg) ? JSON.stringify(pkg.files) : 'package.json unreadable',
+  )
+}
+
 const facets = manifest.facets
 check('facets is an object with only "host"', isObject(facets) && Object.keys(facets).every((key) => key === 'host'))
 const host = isObject(facets) ? facets.host : undefined

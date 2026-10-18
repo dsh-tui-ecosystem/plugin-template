@@ -43,8 +43,10 @@ jobs:
       - name: Check the manifest
         run: node scripts/check-manifest.mjs
 
-      - name: Inspect the tarball
-        run: npm pack --dry-run
+      - name: Check the tarball
+        run: |
+          npm pack --dry-run --json > "$RUNNER_TEMP/pack.json"
+          node -e 'const pack = require(process.argv[1])[0]; if (!pack.files.some(file => file.path === "dsh-plugin.json")) { console.error("dsh-plugin.json is not in the tarball"); process.exit(1) }' "$RUNNER_TEMP/pack.json"
 
       - name: Publish with provenance
         run: npm publish --provenance --access public

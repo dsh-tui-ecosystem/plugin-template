@@ -22,7 +22,8 @@ demonstrates seams; being installable is not admission）:
 
 ## 声明面 / The manifest
 
-- `id` / `name` / `version`：与 `package.json` 对齐；`id` 用命名空间形式、稳定不随版本变
+- `id`：命名空间组件 id，稳定不随版本变；`version` 与 `package.json` 对齐；`name` 是展示名
+  （projection 的 `displayName`），不必等于包名
 - `facets.host`：`entry` 指向包内入口（本模板是 `lib/types/index.js`）；`apiVersion` 写
   **facet 版本 `v1alpha1`**——`tui.dsh/v1alpha1` 是私有协议坐标，只出现在
   `requires.contracts` 的引用与贡献声明里
@@ -40,7 +41,7 @@ demonstrates seams; being installable is not admission）:
 ```sh
 # 1. 复制并改名
 cp -r plugin-template my-plugin && cd my-plugin
-# 把 package.json 的 name 与 dsh-plugin.json 的 id / name 改成你的
+# 把 package.json 的 name、repository 与 dsh-plugin.json 的 id / name 改成你的
 # （组织内建议 @dsh-tui-ecosystem/<name>；裸名也是一等公民，不因命名被拒）
 
 # 2. 安装与构建（首次用 pnpm install 生成锁文件，之后 CI 用 --frozen-lockfile）
