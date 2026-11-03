@@ -82,8 +82,8 @@ themes/                    主题资产（用户复制到 ~/.dsh-tui/themes/）
 
 - 纯 ESM，TypeScript 相对导入带 `.js` 后缀
   (Pure ESM; `.js` suffixes on relative imports)
-- 许可证 MIT；Node `^22.19 || >=24`；语义化版本
-  (MIT license; Node `^22.19 || >=24`; semver)
+- 许可证 MIT；Node `>=24.9`；语义化版本
+  (MIT license; Node `>=24.9`; semver)
 - 完整接缝目录、质量红线与收录方式见核心仓库的
   [插件开发指南](https://github.com/ccch1mneyyy/dsh-TUI/blob/main/docs/plugins.md)
   (Full seam catalogue, red lines, and listing: the core repo's
